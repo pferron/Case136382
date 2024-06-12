@@ -1,45 +1,73 @@
 {
   "scanSettings": {
     "configMode": "AUTO",
-    "configExternalURL": "",
-    "projectToken": "",
-    "baseBranches": []
-  },
-  "scanSettingsSAST": {
-    "enableScan": true,
-    "scanPullRequests": true,
-    "incrementalScan": true,
     "baseBranches": [],
-    "snippetSize": 10
+    "repoNameSync": true,    
+    "enableLicenseViolations": true
   },
   "checkRunSettings": {
     "vulnerableCheckRunConclusionLevel": "failure",
+    "licenseCheckRunConclusionLevel": "failure",
     "displayMode": "diff",
     "useMendCheckNames": true
   },
-  "checkRunSettingsSAST": {
-    "checkRunConclusionLevel": "failure",
-    "severityThreshold": "high"
-  },
   "issueSettings": {
-    "minSeverityLevel": "LOW",
-    "issueType": "DEPENDENCY"
-  },
-  "issueSettingsSAST": {
-    "minSeverityLevel": "high",
-    "issueType": "repo"
+    "minSeverityLevel": "NONE",
+    "issueType": "VULNERABILITY",
+    "displayLicenseViolations": false
   },
   "remediateSettings": {
+    "enableRenovate": false,
     "workflowRules": {
-      "enabled": true
-    }
-  },
-   "imageSettings":{
-       "imageTracing":{
-           "enableImageTracingPR": false,
-           "addRepositoryCoordinate": false,
-           "addDockerfilePath": false,
-           "addMendIdentifier": false
-       }
-   }
+      "enabled": false
+    },
+    "packageRules": [
+      {
+        "matchDatasources": ["docker"],
+        "registryUrls": ["https://docker.deere.com"]
+      },
+      {
+        "matchDatasources": ["npm","node"],
+        "registryUrls": ["https://npm.deere.com"]
+      },
+      {
+        "matchDatasources": ["maven"],
+        "registryUrls": ["https://maven.deere.com"]
+      },
+      {
+        "matchDatasources": ["gradle-version"],
+        "registryUrls": ["https://gradle.deere.com"]
+      },
+      {
+        "matchDatasources": ["sbt-package","sbt-plugin"],
+        "registryUrls": ["https://sbt.deere.com", "https://maven.deere.com"]
+      },
+      {
+        "matchDatasources": ["pypi"],
+        "registryUrls": ["https://pypi.deere.com/simple"]
+      },
+      {
+        "matchDatasources": ["rubygems","ruby-version"],
+        "registryUrls": ["https://gems.deere.com"]
+      },
+      {
+        "matchDatasources": ["nuget"],
+        "registryUrls": ["https://nuget.deere.com"]
+      },
+      {
+        "matchDatasources": ["terraform-module","terraform-provider"],
+        "registryUrls": ["https://tfmod.deere.com"]
+      },
+      {
+        "matchDatasources": ["conan"],
+        "registryUrls": ["https://conan.deere.com"]
+      },
+      {
+        "matchDatasources": [
+          "github-releases"
+        ],
+        "enabled": true
+      }
+    ]
+  }
 }
